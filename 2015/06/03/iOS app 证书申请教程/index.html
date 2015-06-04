@@ -29,8 +29,21 @@
         <a class="header-title-link" href="http://wenqulai.github.io">黎文驱的博客</a>
     </h1>
     
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="http://www.gravatar.com/avatar/53bcbaad6a83fb6f9af281ee8f2b38eb?s=90"/>
+        </a>
+    
 </header>
             <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/53bcbaad6a83fb6f9af281ee8f2b38eb?s=90"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">wenqu.lai</span>
+    </div>
     
     
     <ul class="sidebar-buttons">
@@ -117,65 +130,65 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        <p>因为公司还没有 iOS 开发人员，而且运营也没有在 appstore 上架的经验，公司里对 Mac,xcode 了解怎么操作的人都没有，只得由我这个产品来自己动手了。整个上架流程跑下来，对新手来说略显麻烦，这里记录一下避免以后又是一头雾水。</p>
-<p>以下内容由网络上的教程整理而来，来源于 oschina lady-奕奕的文章。</p>
-<h2 id="Certificates,_Identifiers_&amp;Profiles_简介">Certificates, Identifiers &amp;Profiles 简介</h2><blockquote>
-<p>在真机调试以及发布应用时，要申请证书，我们必须知道Certificates, Identifiers ，Profiles 是什么含义，下面对它们做简单介绍，以及如果申请证书。</p>
+        <p>&#x56E0;&#x4E3A;&#x516C;&#x53F8;&#x8FD8;&#x6CA1;&#x6709; iOS &#x5F00;&#x53D1;&#x4EBA;&#x5458;&#xFF0C;&#x800C;&#x4E14;&#x8FD0;&#x8425;&#x4E5F;&#x6CA1;&#x6709;&#x5728; appstore &#x4E0A;&#x67B6;&#x7684;&#x7ECF;&#x9A8C;&#xFF0C;&#x516C;&#x53F8;&#x91CC;&#x5BF9; Mac,xcode &#x4E86;&#x89E3;&#x600E;&#x4E48;&#x64CD;&#x4F5C;&#x7684;&#x4EBA;&#x90FD;&#x6CA1;&#x6709;&#xFF0C;&#x53EA;&#x5F97;&#x7531;&#x6211;&#x8FD9;&#x4E2A;&#x4EA7;&#x54C1;&#x6765;&#x81EA;&#x5DF1;&#x52A8;&#x624B;&#x4E86;&#x3002;&#x6574;&#x4E2A;&#x4E0A;&#x67B6;&#x6D41;&#x7A0B;&#x8DD1;&#x4E0B;&#x6765;&#xFF0C;&#x5BF9;&#x65B0;&#x624B;&#x6765;&#x8BF4;&#x7565;&#x663E;&#x9EBB;&#x70E6;&#xFF0C;&#x8FD9;&#x91CC;&#x8BB0;&#x5F55;&#x4E00;&#x4E0B;&#x907F;&#x514D;&#x4EE5;&#x540E;&#x53C8;&#x662F;&#x4E00;&#x5934;&#x96FE;&#x6C34;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x7531;&#x7F51;&#x7EDC;&#x4E0A;&#x7684;&#x6559;&#x7A0B;&#x6574;&#x7406;&#x800C;&#x6765;&#xFF0C;&#x6765;&#x6E90;&#x4E8E; oschina lady-&#x5955;&#x5955;&#x7684;&#x6587;&#x7AE0;&#x3002;</p>
+<h2 id="certificates-identifiers-profiles-&#x7B80;&#x4ECB;">Certificates, Identifiers &amp;Profiles &#x7B80;&#x4ECB;</h2><blockquote>
+<p>&#x5728;&#x771F;&#x673A;&#x8C03;&#x8BD5;&#x4EE5;&#x53CA;&#x53D1;&#x5E03;&#x5E94;&#x7528;&#x65F6;&#xFF0C;&#x8981;&#x7533;&#x8BF7;&#x8BC1;&#x4E66;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x77E5;&#x9053;Certificates, Identifiers &#xFF0C;Profiles &#x662F;&#x4EC0;&#x4E48;&#x542B;&#x4E49;&#xFF0C;&#x4E0B;&#x9762;&#x5BF9;&#x5B83;&#x4EEC;&#x505A;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#xFF0C;&#x4EE5;&#x53CA;&#x5982;&#x679C;&#x7533;&#x8BF7;&#x8BC1;&#x4E66;&#x3002;</p>
 </blockquote>
-<h3 id="Certificates">Certificates</h3><p>Certificates 即 ”证书“，约等于通行证，申请证书是我们进行真机调试与发布的第一步。证书有两种：</p>
+<h3 id="certificates">Certificates</h3><p>Certificates &#x5373; &#x201D;&#x8BC1;&#x4E66;&#x201C;&#xFF0C;&#x7EA6;&#x7B49;&#x4E8E;&#x901A;&#x884C;&#x8BC1;&#xFF0C;&#x7533;&#x8BF7;&#x8BC1;&#x4E66;&#x662F;&#x6211;&#x4EEC;&#x8FDB;&#x884C;&#x771F;&#x673A;&#x8C03;&#x8BD5;&#x4E0E;&#x53D1;&#x5E03;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#x3002;&#x8BC1;&#x4E66;&#x6709;&#x4E24;&#x79CD;&#xFF1A;</p>
 <ol>
-<li>开发证书 （ Development Certificates ），主要是授权mac设备的开发权限</li>
-<li>发布证书 （Distribution Certificates ）， 主要是授权mac设置发布权限</li>
+<li>&#x5F00;&#x53D1;&#x8BC1;&#x4E66; &#xFF08; Development Certificates &#xFF09;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x6388;&#x6743;mac&#x8BBE;&#x5907;&#x7684;&#x5F00;&#x53D1;&#x6743;&#x9650;</li>
+<li>&#x53D1;&#x5E03;&#x8BC1;&#x4E66; &#xFF08;Distribution Certificates &#xFF09;&#xFF0C; &#x4E3B;&#x8981;&#x662F;&#x6388;&#x6743;mac&#x8BBE;&#x7F6E;&#x53D1;&#x5E03;&#x6743;&#x9650;</li>
 </ol>
-<h3 id="Identifiers">Identifiers</h3><p>Identifiers 即”标识符“，约等于是身份证，用于创建以下三个：</p>
+<h3 id="identifiers">Identifiers</h3><p>Identifiers &#x5373;&#x201D;&#x6807;&#x8BC6;&#x7B26;&#x201C;&#xFF0C;&#x7EA6;&#x7B49;&#x4E8E;&#x662F;&#x8EAB;&#x4EFD;&#x8BC1;&#xFF0C;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#xFF1A;</p>
 <ul>
 <li>App IDs</li>
 <li>Pass Type IDs</li>
 <li>Website Push IDs </li>
 </ul>
-<p>其中，App ID是应用的唯一标示符，每一个应用的app id是不一样的.</p>
-<h3 id="Devices">Devices</h3><p>Devices 用于创建测试设备，一个99美元允许创建100个设备.</p>
-<h3 id="Provisioning_Profiles">Provisioning Profiles</h3><p>Provisioning Profiles 即“描述文件”。它的功能很特别，专门用于将 Certificates、Identifiers、Devices结合起来，形成一个描述证书、标示符的描述文件。Provisioning Profiles 放入我们的xcode中，让 xcode知道我们的证书和哪些设备之类的信息相匹配。</p>
-<p>下面来介绍如何申请证书：</p>
-<h4 id="第一步：申请本地证书">第一步：申请本地证书</h4><p>打开『钥匙串访问』，选择从颁发机构申请证书，注意下面的红色框，必须选择那一个才可以：</p>
+<p>&#x5176;&#x4E2D;&#xFF0C;App ID&#x662F;&#x5E94;&#x7528;&#x7684;&#x552F;&#x4E00;&#x6807;&#x793A;&#x7B26;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x7684;app id&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;.</p>
+<h3 id="devices">Devices</h3><p>Devices &#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x6D4B;&#x8BD5;&#x8BBE;&#x5907;&#xFF0C;&#x4E00;&#x4E2A;99&#x7F8E;&#x5143;&#x5141;&#x8BB8;&#x521B;&#x5EFA;100&#x4E2A;&#x8BBE;&#x5907;.</p>
+<h3 id="provisioning-profiles">Provisioning Profiles</h3><p>Provisioning Profiles &#x5373;&#x201C;&#x63CF;&#x8FF0;&#x6587;&#x4EF6;&#x201D;&#x3002;&#x5B83;&#x7684;&#x529F;&#x80FD;&#x5F88;&#x7279;&#x522B;&#xFF0C;&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x5C06; Certificates&#x3001;Identifiers&#x3001;Devices&#x7ED3;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x63CF;&#x8FF0;&#x8BC1;&#x4E66;&#x3001;&#x6807;&#x793A;&#x7B26;&#x7684;&#x63CF;&#x8FF0;&#x6587;&#x4EF6;&#x3002;Provisioning Profiles &#x653E;&#x5165;&#x6211;&#x4EEC;&#x7684;xcode&#x4E2D;&#xFF0C;&#x8BA9; xcode&#x77E5;&#x9053;&#x6211;&#x4EEC;&#x7684;&#x8BC1;&#x4E66;&#x548C;&#x54EA;&#x4E9B;&#x8BBE;&#x5907;&#x4E4B;&#x7C7B;&#x7684;&#x4FE1;&#x606F;&#x76F8;&#x5339;&#x914D;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6765;&#x4ECB;&#x7ECD;&#x5982;&#x4F55;&#x7533;&#x8BF7;&#x8BC1;&#x4E66;&#xFF1A;</p>
+<h4 id="&#x7B2C;&#x4E00;&#x6B65;&#x7533;&#x8BF7;&#x672C;&#x5730;&#x8BC1;&#x4E66;">&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x7533;&#x8BF7;&#x672C;&#x5730;&#x8BC1;&#x4E66;</h4><p>&#x6253;&#x5F00;&#x300E;&#x94A5;&#x5319;&#x4E32;&#x8BBF;&#x95EE;&#x300F;&#xFF0C;&#x9009;&#x62E9;&#x4ECE;&#x9881;&#x53D1;&#x673A;&#x6784;&#x7533;&#x8BF7;&#x8BC1;&#x4E66;&#xFF0C;&#x6CE8;&#x610F;&#x4E0B;&#x9762;&#x7684;&#x7EA2;&#x8272;&#x6846;&#xFF0C;&#x5FC5;&#x987B;&#x9009;&#x62E9;&#x90A3;&#x4E00;&#x4E2A;&#x624D;&#x53EF;&#x4EE5;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/1.png" alt="1.png"></p>
-<p>点击后看到：</p>
+<p>&#x70B9;&#x51FB;&#x540E;&#x770B;&#x5230;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/2.png" alt="2.png"></p>
-<p>如果选择 “存储到磁盘”,那么“用户邮件地址” 随便填一个就好，点击“继续”：</p>
+<p>&#x5982;&#x679C;&#x9009;&#x62E9; &#x201C;&#x5B58;&#x50A8;&#x5230;&#x78C1;&#x76D8;&#x201D;,&#x90A3;&#x4E48;&#x201C;&#x7528;&#x6237;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#x201D; &#x968F;&#x4FBF;&#x586B;&#x4E00;&#x4E2A;&#x5C31;&#x597D;&#xFF0C;&#x70B9;&#x51FB;&#x201C;&#x7EE7;&#x7EED;&#x201D;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/3.png" alt="3.png"></p>
-<p>“存储为：”可以给证书命名，选择一个位置，点击“存储”：</p>
+<p>&#x201C;&#x5B58;&#x50A8;&#x4E3A;&#xFF1A;&#x201D;&#x53EF;&#x4EE5;&#x7ED9;&#x8BC1;&#x4E66;&#x547D;&#x540D;&#xFF0C;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x70B9;&#x51FB;&#x201C;&#x5B58;&#x50A8;&#x201D;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/4.png" alt="4.png"></p>
-<p>这样在桌面就生成了一个证书。<br><strong>注意这一个本地证书可以同时用来生成“开发证书”和“发布证书”。</strong></p>
-<p>下面只介绍“发布证书“的申请，申请”开发证书“步骤相同，就是换一个选项 。</p>
-<h4 id="第二步：_在开发者账号里申请证书">第二步： 在开发者账号里申请证书</h4><p>我们进入99美元开发账号看到：</p>
+<p>&#x8FD9;&#x6837;&#x5728;&#x684C;&#x9762;&#x5C31;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x8BC1;&#x4E66;&#x3002;<br><strong>&#x6CE8;&#x610F;&#x8FD9;&#x4E00;&#x4E2A;&#x672C;&#x5730;&#x8BC1;&#x4E66;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x7528;&#x6765;&#x751F;&#x6210;&#x201C;&#x5F00;&#x53D1;&#x8BC1;&#x4E66;&#x201D;&#x548C;&#x201C;&#x53D1;&#x5E03;&#x8BC1;&#x4E66;&#x201D;&#x3002;</strong></p>
+<p>&#x4E0B;&#x9762;&#x53EA;&#x4ECB;&#x7ECD;&#x201C;&#x53D1;&#x5E03;&#x8BC1;&#x4E66;&#x201C;&#x7684;&#x7533;&#x8BF7;&#xFF0C;&#x7533;&#x8BF7;&#x201D;&#x5F00;&#x53D1;&#x8BC1;&#x4E66;&#x201C;&#x6B65;&#x9AA4;&#x76F8;&#x540C;&#xFF0C;&#x5C31;&#x662F;&#x6362;&#x4E00;&#x4E2A;&#x9009;&#x9879; &#x3002;</p>
+<h4 id="&#x7B2C;&#x4E8C;&#x6B65;-&#x5728;&#x5F00;&#x53D1;&#x8005;&#x8D26;&#x53F7;&#x91CC;&#x7533;&#x8BF7;&#x8BC1;&#x4E66;">&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A; &#x5728;&#x5F00;&#x53D1;&#x8005;&#x8D26;&#x53F7;&#x91CC;&#x7533;&#x8BF7;&#x8BC1;&#x4E66;</h4><p>&#x6211;&#x4EEC;&#x8FDB;&#x5165;99&#x7F8E;&#x5143;&#x5F00;&#x53D1;&#x8D26;&#x53F7;&#x770B;&#x5230;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/5.png" alt="5.png"></p>
-<p>点击 <strong>Certificates, Identifiers &amp; Profiles</strong>，进入页面看到：</p>
+<p>&#x70B9;&#x51FB; <strong>Certificates, Identifiers &amp; Profiles</strong>&#xFF0C;&#x8FDB;&#x5165;&#x9875;&#x9762;&#x770B;&#x5230;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/6.png" alt="6.png"></p>
-<p>如果要申请开发证书就选择 Development,如果要申请发布证书，就选择 Production,步骤都是选择“+”号后添加证书：</p>
+<p>&#x5982;&#x679C;&#x8981;&#x7533;&#x8BF7;&#x5F00;&#x53D1;&#x8BC1;&#x4E66;&#x5C31;&#x9009;&#x62E9; Development,&#x5982;&#x679C;&#x8981;&#x7533;&#x8BF7;&#x53D1;&#x5E03;&#x8BC1;&#x4E66;&#xFF0C;&#x5C31;&#x9009;&#x62E9; Production,&#x6B65;&#x9AA4;&#x90FD;&#x662F;&#x9009;&#x62E9;&#x201C;+&#x201D;&#x53F7;&#x540E;&#x6DFB;&#x52A0;&#x8BC1;&#x4E66;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/7.png" alt="7.png"></p>
-<p>点击“+”后看到：</p>
+<p>&#x70B9;&#x51FB;&#x201C;+&#x201D;&#x540E;&#x770B;&#x5230;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/8.png" alt="8.png"></p>
-<p>如果是选择 “开发证书”，点击第一个红框:</p>
+<p>&#x5982;&#x679C;&#x662F;&#x9009;&#x62E9; &#x201C;&#x5F00;&#x53D1;&#x8BC1;&#x4E66;&#x201D;&#xFF0C;&#x70B9;&#x51FB;&#x7B2C;&#x4E00;&#x4E2A;&#x7EA2;&#x6846;:</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/9.png" alt="9.png"></p>
-<p>如果是选择 “发布证书”，点击第二个红框:</p>
+<p>&#x5982;&#x679C;&#x662F;&#x9009;&#x62E9; &#x201C;&#x53D1;&#x5E03;&#x8BC1;&#x4E66;&#x201D;&#xFF0C;&#x70B9;&#x51FB;&#x7B2C;&#x4E8C;&#x4E2A;&#x7EA2;&#x6846;:</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/10.png" alt="10.png"></p>
-<p>选择好后，点击“continue”：</p>
+<p>&#x9009;&#x62E9;&#x597D;&#x540E;&#xFF0C;&#x70B9;&#x51FB;&#x201C;continue&#x201D;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/11.png" alt="11.png"></p>
-<p>点击后出现：</p>
+<p>&#x70B9;&#x51FB;&#x540E;&#x51FA;&#x73B0;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/12.png" alt="12.png"></p>
-<p>选择“Choose File” 将刚刚申请的保存在本地的证书上传：</p>
+<p>&#x9009;&#x62E9;&#x201C;Choose File&#x201D; &#x5C06;&#x521A;&#x521A;&#x7533;&#x8BF7;&#x7684;&#x4FDD;&#x5B58;&#x5728;&#x672C;&#x5730;&#x7684;&#x8BC1;&#x4E66;&#x4E0A;&#x4F20;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/13.png" alt="13.png"></p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/14.png" alt="14.png"></p>
-<p>上传好后，点击“Generate” 就可以生成证书了。</p>
+<p>&#x4E0A;&#x4F20;&#x597D;&#x540E;&#xFF0C;&#x70B9;&#x51FB;&#x201C;Generate&#x201D; &#x5C31;&#x53EF;&#x4EE5;&#x751F;&#x6210;&#x8BC1;&#x4E66;&#x4E86;&#x3002;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/15.png" alt="15.png"></p>
-<p>选择“Download”。</p>
-<p>这时，我们在本地生成的证书就没用了，可以删除。</p>
-<p>我们返回到证书的界面可以看到我们申请的证书：</p>
+<p>&#x9009;&#x62E9;&#x201C;Download&#x201D;&#x3002;</p>
+<p>&#x8FD9;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x672C;&#x5730;&#x751F;&#x6210;&#x7684;&#x8BC1;&#x4E66;&#x5C31;&#x6CA1;&#x7528;&#x4E86;&#xFF0C;&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x8FD4;&#x56DE;&#x5230;&#x8BC1;&#x4E66;&#x7684;&#x754C;&#x9762;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6211;&#x4EEC;&#x7533;&#x8BF7;&#x7684;&#x8BC1;&#x4E66;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/16.png" alt="16.png"></p>
-<p>一般申请一个 发布证书（IOS Distribution），一个开发证书（IOS Development）就够用了。</p>
-<p>找到下载的文件，双击它，添加到钥匙串里就好了。在这一步里，如果钥匙串拒绝添加，直接将其拖进钥匙串就行：</p>
+<p>&#x4E00;&#x822C;&#x7533;&#x8BF7;&#x4E00;&#x4E2A; &#x53D1;&#x5E03;&#x8BC1;&#x4E66;&#xFF08;IOS Distribution&#xFF09;&#xFF0C;&#x4E00;&#x4E2A;&#x5F00;&#x53D1;&#x8BC1;&#x4E66;&#xFF08;IOS Development&#xFF09;&#x5C31;&#x591F;&#x7528;&#x4E86;&#x3002;</p>
+<p>&#x627E;&#x5230;&#x4E0B;&#x8F7D;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x53CC;&#x51FB;&#x5B83;&#xFF0C;&#x6DFB;&#x52A0;&#x5230;&#x94A5;&#x5319;&#x4E32;&#x91CC;&#x5C31;&#x597D;&#x4E86;&#x3002;&#x5728;&#x8FD9;&#x4E00;&#x6B65;&#x91CC;&#xFF0C;&#x5982;&#x679C;&#x94A5;&#x5319;&#x4E32;&#x62D2;&#x7EDD;&#x6DFB;&#x52A0;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x5176;&#x62D6;&#x8FDB;&#x94A5;&#x5319;&#x4E32;&#x5C31;&#x884C;&#xFF1A;</p>
 <p><img src="http://7xj0t7.com1.z0.glb.clouddn.com/17.png" alt="17.png"></p>
-<p>这样证书就申请完毕了，有了证书后，接下来可以申请各种各样的描述文件供开发使用。</p>
+<p>&#x8FD9;&#x6837;&#x8BC1;&#x4E66;&#x5C31;&#x7533;&#x8BF7;&#x5B8C;&#x6BD5;&#x4E86;&#xFF0C;&#x6709;&#x4E86;&#x8BC1;&#x4E66;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;&#x5404;&#x79CD;&#x5404;&#x6837;&#x7684;&#x63CF;&#x8FF0;&#x6587;&#x4EF6;&#x4F9B;&#x5F00;&#x53D1;&#x4F7F;&#x7528;&#x3002;</p>
 
         
             
@@ -188,7 +201,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/03/test/"  data-tooltip="test">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -251,7 +264,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/03/test/"  data-tooltip="test">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -303,9 +316,23 @@
             <i class="fa fa-remove"></i>
         </div>
         
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/53bcbaad6a83fb6f9af281ee8f2b38eb?s=110"/>
+        
             <h4 id="about-card-name">wenqu.lai</h4>
         
         
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                PM
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Guangdong Zhongshan
+            </h5>
         
     </div>
 </div>
